@@ -38,7 +38,6 @@ function App() {
         setError(error.message);
         setIsLoading(false);
       }
-      // let content = <p>couldn't find city</p>;
 
       if (error) {
         return <p>{error}</p>;
@@ -69,53 +68,6 @@ function App() {
         ? "App snow"
         : "App"
       : "App";
-
-  // if (weather.temp > 50) {
-  //   return "App cold";
-  // } else if (weather.weather[0].main === "Rain") {
-  //   return "App rain";
-  // } else if (weather.weather[0].main === "Snow") {
-  //   return "App snow";
-  // } else if (weather.weather[0].main === "Clouds") {
-  //   return "App clouds";
-  // } else {
-  //   return "App";
-  // }
-
-  // const weatherBgClass =
-  //   typeof weather.main != "undefined"
-  //     ? typeof weather.temp < 50
-  //       ? "App cold"
-  //       : typeof weather.temp > 50 && weather.weather[0].main === "Clear"
-  //       ? "App"
-  //       : typeof weather.temp < 50 && weather.weather[0].main === "Rain"
-  //       ? "App rain"
-  //       : typeof weather.temp < 50 && weather.weather[0].main === "Snow"
-  //       ? "App snow"
-  //       : typeof weather.temp < 50 && weather.weather[0].main === "Clouds"
-  //       ? "App clouds"
-  //       : "App"
-  //     : "App";
-
-  // const weatherBgClass = typeof weather.main != "undefined" ? weather.main.temp < 50 && weather.weather[0].description === 'clear sky' ? "App cold" : weather.main.temp < 50 && weather.weather[0].description === 'snow' ? "App snow" ? weather.main.temp < 50 && weather.weather[0].description === "rain" : "App rain" ? weather.main.temp < 50 && weather.weather[0].description === "clear sky" ? 'App' : 'App'
-
-  // const weatherClass =
-  //   typeof weather.main != "undefined"
-  //     ? weather.main.temp < 50
-  //       ? "App cold"
-  //       : "App "
-  //     : "App";
-
-  // typeof weather.main != "undefined"
-  //   ? weather.main.temp < 50 && !weather.weather[0].main === "Rain"
-  //     ? "App cold"
-  //     : "App rain"
-  //     ? typeof weather.main != "undefined"
-  //     ? weather.main.temp < 50 && !weather.weather[0].main === "Snow"
-  //       ? "App snow"
-  //       : "App rain"
-  //       ? "App"
-  //       : 'App';
 
   return (
     <div className={weatherBgClass}>
