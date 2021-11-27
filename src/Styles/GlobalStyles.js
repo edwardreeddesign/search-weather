@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import bgSunny from "../Images/sunny.webp";
 import bgCold from "../Images/cold.jpeg";
+import bgRain from "../Images/rain.webp";
+import bgSnow from "../Images/snow.webp";
+import bgClouds from "../Images/cloudy.jpeg";
 
 const GlobalStyle = createGlobalStyle`
     :root {
@@ -32,6 +35,18 @@ const GlobalStyle = createGlobalStyle`
 
         &.cold {
             background-image: url(${bgCold});
+        }
+
+        &.rain {
+            background-image: url(${bgRain})
+        }
+
+        &.snow {
+            background-image: url(${bgSnow})
+        }
+
+        &.clouds {
+            background-image: url(${bgClouds})
         }
     }
 

@@ -6,11 +6,11 @@ const TimeDate = () => {
   const month = date.toLocaleString("en-US", { month: "long" });
   const day = date.toLocaleString("en-US", { day: "2-digit" });
   const year = date.getFullYear();
-  let hour = date.getHours();
-  hour = hour % 12 || 12;
+  let hour = date.getHours() % 12 || 12;
+  // hour = hour % 12 || 12;
   let min = String(date.getMinutes()).padStart(2, "0");
 
-  const amPm = hour >= 13 ? "PM" : "AM";
+  const amPm = hour >= 12 ? "PM" : "AM";
 
   return (
     <StyledTimeDate>
@@ -34,7 +34,8 @@ const StyledTimeDate = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 60%;
+  width: 60%;
+  max-width: 30rem;
   margin: 0 auto;
   padding: 2rem 0;
   background: rgba(0, 0, 0, 0.5);

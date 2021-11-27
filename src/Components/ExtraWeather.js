@@ -37,7 +37,9 @@ const StyledExtra = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 8rem;
+  margin: 0 auto;
+  width: 60%;
+  max-width: 30rem;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--clrAccent);
   border-radius: 0.5rem;

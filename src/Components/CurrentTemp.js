@@ -28,7 +28,9 @@ const StyledTemp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem 5rem;
+  margin: 3rem auto;
+  width: 60%;
+  max-width: 30rem;
   padding: 2rem;
   background: rgba(0, 0, 0, 0.5);
   text-shadow: 3px 3px rgba(0, 0, 0, 0.8);
@@ -41,7 +43,7 @@ const StyledTemp = styled.div`
   }
 
   .temp {
-    font-size: 6rem;
+    font-size: 5rem;
     font-style: italic;
     font-family: var(--fontTitle);
   }

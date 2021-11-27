@@ -5,47 +5,124 @@ import Input from "./Components/Input";
 import GlobalStyle from "./Styles/GlobalStyles";
 import TimeDate from "./Components/TimeDate";
 import CurrentConditions from "./Components/CurrentConditions";
+import Spinner from "./Components/Spinner";
 
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
-
-  // const api = {
-  //   key: process.env.REACT_APP_API_KEY,
-  //   base: process.env.REACT_APP_API_BASE,
-  // };
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const api = {
-    key: "f77fe606824494b5fb994bb17a72f10d",
-    base: "https://api.openweathermap.org/data/2.5/",
+    key: process.env.REACT_APP_API_KEY,
+    base: process.env.REACT_APP_API_BASE,
   };
-  const search = (evt) => {
+
+  const search = async (evt) => {
+    setError(null);
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
-        .then((res) => res.json())
-        .then((result) => {
-          setWeather(result);
-          setQuery("");
-          console.log(result);
-        });
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`
+        );
+        if (!response.ok) {
+          throw new Error("Couldn't find City.");
+        }
+        const result = await response.json();
+        console.log(result);
+
+        setWeather(result);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
+      // let content = <p>couldn't find city</p>;
+
+      if (error) {
+        return <p>{error}</p>;
+      }
+
+      if (isLoading) {
+        <Spinner />;
+      }
     }
   };
-  const inputHandler = (e) => {
+
+  const inputHandler = (e, error) => {
     setQuery(e.target.value);
   };
 
-  const weatherClass =
+  const weatherBgClass =
     typeof weather.main != "undefined"
-      ? weather.main.temp < 50
+      ? weather.main.temp < 50 &&
+        weather.weather[0].main !== "Rain" &&
+        weather.weather[0].main !== "Clouds" &&
+        weather.weather[0].main !== "Snow"
         ? "App cold"
+        : weather.main.temp < 50 && weather.weather[0].main === "Rain"
+        ? "App rain"
+        : weather.main.temp < 50 && weather.weather[0].main === "Clouds"
+        ? "App clouds"
+        : weather.weather[0].main === "Snow"
+        ? "App snow"
         : "App"
       : "App";
 
+  // if (weather.temp > 50) {
+  //   return "App cold";
+  // } else if (weather.weather[0].main === "Rain") {
+  //   return "App rain";
+  // } else if (weather.weather[0].main === "Snow") {
+  //   return "App snow";
+  // } else if (weather.weather[0].main === "Clouds") {
+  //   return "App clouds";
+  // } else {
+  //   return "App";
+  // }
+
+  // const weatherBgClass =
+  //   typeof weather.main != "undefined"
+  //     ? typeof weather.temp < 50
+  //       ? "App cold"
+  //       : typeof weather.temp > 50 && weather.weather[0].main === "Clear"
+  //       ? "App"
+  //       : typeof weather.temp < 50 && weather.weather[0].main === "Rain"
+  //       ? "App rain"
+  //       : typeof weather.temp < 50 && weather.weather[0].main === "Snow"
+  //       ? "App snow"
+  //       : typeof weather.temp < 50 && weather.weather[0].main === "Clouds"
+  //       ? "App clouds"
+  //       : "App"
+  //     : "App";
+
+  // const weatherBgClass = typeof weather.main != "undefined" ? weather.main.temp < 50 && weather.weather[0].description === 'clear sky' ? "App cold" : weather.main.temp < 50 && weather.weather[0].description === 'snow' ? "App snow" ? weather.main.temp < 50 && weather.weather[0].description === "rain" : "App rain" ? weather.main.temp < 50 && weather.weather[0].description === "clear sky" ? 'App' : 'App'
+
+  // const weatherClass =
+  //   typeof weather.main != "undefined"
+  //     ? weather.main.temp < 50
+  //       ? "App cold"
+  //       : "App "
+  //     : "App";
+
+  // typeof weather.main != "undefined"
+  //   ? weather.main.temp < 50 && !weather.weather[0].main === "Rain"
+  //     ? "App cold"
+  //     : "App rain"
+  //     ? typeof weather.main != "undefined"
+  //     ? weather.main.temp < 50 && !weather.weather[0].main === "Snow"
+  //       ? "App snow"
+  //       : "App rain"
+  //       ? "App"
+  //       : 'App';
+
   return (
-    <div className={weatherClass}>
+    <div className={weatherBgClass}>
       <StyledApp>
         <GlobalStyle />
         <Nav />
+        {typeof weather.main != "undefined"}
         <Input
           api={api}
           search={search}
@@ -54,7 +131,9 @@ function App() {
           setQuery={setQuery}
           setWeather={setWeather}
         />
+        {isLoading && <Spinner />}
         <TimeDate />
+        {error && <p className="error">Couldn't find City</p>}
         {typeof weather.main != "undefined" ? (
           <CurrentConditions weather={weather} />
         ) : (
@@ -72,6 +151,11 @@ const StyledApp = styled.div`
     rgba(0, 0, 0, 0.2),
     rgba(0, 0, 0, 0.6)
   );
+
+  .error {
+    text-align: center;
+    font-size: 2rem;
+  }
 `;
 
 export default App;
