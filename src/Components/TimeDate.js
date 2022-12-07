@@ -1,16 +1,16 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const TimeDate = () => {
   const date = new Date();
-  const month = date.toLocaleString("en-US", { month: "long" });
-  const day = date.toLocaleString("en-US", { day: "2-digit" });
+  const month = date.toLocaleString('en-US', { month: 'long' });
+  const day = date.toLocaleString('en-US', { day: '2-digit' });
   const year = date.getFullYear();
   let hour = date.getHours() % 12 || 12;
   // hour = hour % 12 || 12;
-  let min = String(date.getMinutes()).padStart(2, "0");
+  let min = String(date.getMinutes()).padStart(2, '0');
 
-  const amPm = hour >= 12 ? "PM" : "AM";
+  const amPm = hour >= 12 ? 'AM' : 'PM';
 
   return (
     <StyledTimeDate>

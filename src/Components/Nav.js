@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Nav = () => {
   return (
@@ -19,7 +19,7 @@ const StyledNav = styled.div`
 
   h1 {
     font-family: var(--fontTitle);
-    color: var(--clrMed);
+    color: var(--clrDark);
   }
 `;
 

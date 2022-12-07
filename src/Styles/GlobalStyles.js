@@ -1,16 +1,16 @@
-import { createGlobalStyle } from "styled-components";
-import bgSunny from "../Images/sunny.webp";
-import bgCold from "../Images/cold.jpeg";
-import bgRain from "../Images/rain.webp";
-import bgSnow from "../Images/snow.webp";
-import bgClouds from "../Images/cloudy.jpeg";
+import { createGlobalStyle } from 'styled-components';
+import bgSunny from '../Images/sunny.webp';
+import bgCold from '../Images/cold.jpeg';
+import bgRain from '../Images/rain.webp';
+import bgSnow from '../Images/snow.webp';
+import bgClouds from '../Images/cloudy.jpeg';
 
 const GlobalStyle = createGlobalStyle`
     :root {
         --clrLight: #E9E5DF;
         --clrMed: #698193;
         --clrDark: #002C4C;
-        --clrAccent: #0966C2;
+        --clrAccent: #a1ccf7;
         
 
         --fontMain: 'DM Sans', sans-serif;

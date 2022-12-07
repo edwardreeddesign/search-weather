@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Input = ({ api, query, setQuery, setWeather, search, inputHandler }) => {
   return (
@@ -20,7 +20,7 @@ const StyledInput = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 75%;
-  margin: 0 auto 1.5rem;
+  margin: 1rem auto 1.5rem;
 
   input {
     display: block;
@@ -31,8 +31,8 @@ const StyledInput = styled.div`
     border: none;
     outline: none;
     background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
-    border-bottom: 3px solid var(--clrDark);
+
+    border-radius: 0.5rem;
     color: var(--clrDark);
     font-size: 1.7rem;
     transition: background 400ms ease-in-out;
