@@ -13,8 +13,8 @@ const GlobalStyle = createGlobalStyle`
         --clrAccent: #a1ccf7;
         
 
-        --fontMain: 'DM Sans', sans-serif;
-        --fontTitle: 'Righteous', cursive;
+        --fontMain: 'Inter', sans-serif;
+        --fontTitle: 'Inter', sans-serif;
 
         --boxShadow: 
   2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
